@@ -111,12 +111,15 @@ export default class ComposePicker extends Component {
         </Text>
       );
     }
+    console.log("this.state.selected", this.state.selected);
+    console.log("this.props.value", this.props.value);
     return (
       <Text
         allowFontScaling={allowFontScaling}
         style={[styles.contentText, customStyles.contentText]}
       >
-        {this.state.selected || this.props.value}
+        {this.state.selected ||
+          `${this.props.value.startDate} - ${this.props.value.endDate}`}
       </Text>
     );
   }
