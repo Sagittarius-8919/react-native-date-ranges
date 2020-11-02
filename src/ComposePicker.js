@@ -41,6 +41,17 @@ export default class ComposePicker extends Component {
       textEndDate: "End Date",
     };
   }
+  componentDidMount() {
+    const { value, dateSplitter } = this.props;
+    if (value.startDate && value.endDate) {
+      const start = moment(value.startDate).format("LL");
+      const end = moment(value.endDate).format("LL");
+      this.setState({
+        showContent: true,
+        selected: `${start} ${dateSplitter} ${end}`,
+      });
+    }
+  }
   isDateBlocked = (date) => {
     if (this.props.blockBefore) {
       return date.isBefore(moment(), "day");
@@ -111,15 +122,12 @@ export default class ComposePicker extends Component {
         </Text>
       );
     }
-    console.log("this.state.selected", this.state.selected);
-    console.log("this.props.value", this.props.value);
     return (
       <Text
         allowFontScaling={allowFontScaling}
         style={[styles.contentText, customStyles.contentText]}
       >
-        {this.state.selected ||
-          `${this.props.value.startDate} - ${this.props.value.endDate}`}
+        {this.state.selected}
       </Text>
     );
   }
