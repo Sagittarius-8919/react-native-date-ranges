@@ -186,10 +186,10 @@ export default class ComposePicker extends Component {
             </View>
           </View>
           <Modal
-            animationIn="slide"
-            animationOut="slide"
             onBackButtonPress={() => this.setModalVisible(false)}
             isVisible={this.state.modalVisible}
+            backdropOpacity={1}
+            style={{ backgroundColor: "white" }}
           >
             <View stlye={{ flex: 1, flexDirection: "column" }}>
               <View style={{ height: "90%" }}>
