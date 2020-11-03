@@ -52,6 +52,12 @@ export default class ComposePicker extends Component {
       });
     }
   }
+  clearContent = () => {
+    this.setState({
+      showContent: false,
+      selected: "",
+    });
+  };
   isDateBlocked = (date) => {
     if (this.props.blockBefore) {
       return date.isBefore(moment(), "day");
