@@ -169,63 +169,56 @@ export default class ComposePicker extends Component {
     style = { ...style, ...this.props.style };
 
     return (
-      <TouchableHighlight
-        underlayColor={"transparent"}
-        onPress={() => {
-          this.setModalVisible(true);
-        }}
-        style={[
-          { width: "100%", height: "100%", justifyContent: "center" },
-          style,
-        ]}
-      >
-        <View>
-          <View>
-            <View style={[customStyles.contentInput, styles.contentInput]}>
-              {this.getTitleElement()}
+      <>
+        <View
+          style={[
+            { width: "100%", height: "100%", justifyContent: "center" },
+            style,
+          ]}
+        >
+          <View style={[customStyles.contentInput, styles.contentInput]}>
+            {this.getTitleElement()}
+          </View>
+        </View>
+        <Modal
+          onBackButtonPress={() => this.setModalVisible(false)}
+          isVisible={this.state.modalVisible}
+          style={{ backgroundColor: "white" }}
+        >
+          <View stlye={{ flex: 1, flexDirection: "column" }}>
+            <View style={{ height: "90%" }}>
+              <DateRange
+                headFormat={this.props.headFormat}
+                customStyles={customStyles}
+                markText={this.props.markText}
+                onDatesChange={this.onDatesChange}
+                isDateBlocked={this.isDateBlocked}
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                focusedInput={this.state.focus}
+                selectedBgColor={this.props.selectedBgColor || undefined}
+                selectedTextColor={this.props.selectedTextColor || undefined}
+                mode={this.props.mode || "single"}
+                currentDate={this.state.currentDate}
+                textStartDate={this.state.textStartDate}
+                textEndDate={this.state.textEndDate}
+              />
+            </View>
+            <View
+              style={{
+                paddingBottom: "5%",
+                width: "100%",
+                height: "10%",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {this.renderButton()}
             </View>
           </View>
-          <Modal
-            onBackButtonPress={() => this.setModalVisible(false)}
-            isVisible={this.state.modalVisible}
-            backdropOpacity={1}
-            style={{ backgroundColor: "white" }}
-          >
-            <View stlye={{ flex: 1, flexDirection: "column" }}>
-              <View style={{ height: "90%" }}>
-                <DateRange
-                  headFormat={this.props.headFormat}
-                  customStyles={customStyles}
-                  markText={this.props.markText}
-                  onDatesChange={this.onDatesChange}
-                  isDateBlocked={this.isDateBlocked}
-                  startDate={this.state.startDate}
-                  endDate={this.state.endDate}
-                  focusedInput={this.state.focus}
-                  selectedBgColor={this.props.selectedBgColor || undefined}
-                  selectedTextColor={this.props.selectedTextColor || undefined}
-                  mode={this.props.mode || "single"}
-                  currentDate={this.state.currentDate}
-                  textStartDate={this.state.textStartDate}
-                  textEndDate={this.state.textEndDate}
-                />
-              </View>
-              <View
-                style={{
-                  paddingBottom: "5%",
-                  width: "100%",
-                  height: "10%",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {this.renderButton()}
-              </View>
-            </View>
-          </Modal>
-        </View>
-      </TouchableHighlight>
+        </Modal>
+      </>
     );
   }
 }
