@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View, TouchableHighlight, Modal, Text } from "react-native";
+import { View, TouchableHighlight, Text } from "react-native";
+import Modal from "react-native-modal";
 import PropTypes from "prop-types";
 import DateRange from "./DateRange";
 import moment from "moment";
@@ -185,10 +186,10 @@ export default class ComposePicker extends Component {
             </View>
           </View>
           <Modal
-            animationType="slide"
-            onRequestClose={() => this.setModalVisible(false)}
-            transparent={false}
-            visible={this.state.modalVisible}
+            animationIn="slide"
+            animationOut="slide"
+            onBackButtonPress={() => this.setModalVisible(false)}
+            isVisible={this.state.modalVisible}
           >
             <View stlye={{ flex: 1, flexDirection: "column" }}>
               <View style={{ height: "90%" }}>
