@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pohsiu/react-native-date-ranges"
+    "url": "https://github.com/Sagittarius-8919/react-native-date-ranges"
   },
   "dependencies": {
     "moment": "^2.22.1",
